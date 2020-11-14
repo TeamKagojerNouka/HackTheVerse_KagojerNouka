@@ -49,7 +49,7 @@ class DeliverySerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = Delivery
         fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer',
-                  'qr_code')
+                  'qr_code', 'pickup_time', 'success', 'satisfaction_level', 'service')
 
     def get_qr_code(self, obj):
         return obj.get_image_url()
