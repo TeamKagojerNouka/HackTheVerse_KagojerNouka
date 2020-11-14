@@ -1,4 +1,5 @@
 import os
+import json
 from uuid import uuid4
 from django.db import models
 from django.conf import settings
@@ -68,6 +69,9 @@ class Delivery(models.Model):
     def get_path_to_save_in_image_field(self):
         return f'{self.qr_code_text}.png'
 
+    def get_data_to_store_in_qr_code(self):
+        return json.dumps({'id': self.id, 'uuid': str(self.qr_code_text)})
+
     def save_image_in_filesystem(self):
         qr_code = qrcode.QRCode(
             version=1,
@@ -75,17 +79,17 @@ class Delivery(models.Model):
             box_size=10,
             border=4
         )
-        qr_code.add_data(str(self.qr_code_text))
+        qr_code.add_data(self.get_data_to_store_in_qr_code())
         if not os.path.exists(settings.MEDIA_ROOT):
             os.mkdir(settings.MEDIA_ROOT)
         qr_code.make_image().save(self.get_path_in_filesystem())
 
     def save(self, *args, **kwargs):
+        super(Delivery, self).save(*args, **kwargs)
         if not self.qr_code_img:
             self.save_image_in_filesystem()
             self.qr_code_img = self.get_path_to_save_in_image_field()
-
-        super().save(*args, **kwargs)
+            super(Delivery, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.id}:{self.datetime}'

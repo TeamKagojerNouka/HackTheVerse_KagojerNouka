@@ -1,49 +1,41 @@
-import random
-
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
-
-from api.models import *
 from api.serializers import *
 
 
-class BusinessViewset(viewsets.ModelViewSet):
-
+class BusinessViewSet(viewsets.ModelViewSet):
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer
 
 
-class CustomerViewset(viewsets.ModelViewSet):
-
+class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
 
-class DeliveryManViewset(viewsets.ModelViewSet):
-
+class DeliveryManViewSet(viewsets.ModelViewSet):
     queryset = DeliveryMan.objects.all()
     serializer_class = DeliveryManSerializer
 
 
-class ServiceViewset(viewsets.ModelViewSet):
-
+class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
 
 
-class DeliveryViewset(viewsets.ModelViewSet):
-
+class DeliveryViewSet(viewsets.ModelViewSet):
     queryset = Delivery.objects.all()
     serializer_class = DeliverySerializer
 
+    def is_valid_request(self):
+        delivery = self.get_object()
+        return delivery.qr_code_text == self.request.data.get('uuid')
+
     @action(detail=True, methods=['GET'])
     def pickup(self, request, pk):
-
-        delivery = self.get_object()
-
-        # todo: check QR Code, set delivery man, change status to 'picked-up'
-        if random.choice([True, False]):
+        if self.is_valid_request():  # todo: check whether the product is in proper state before
+            delivery = self.get_object()
             delivery.status = 'picked-up'
             delivery.save()
             return Response('You have picked up the goods, young padawan!')
@@ -52,11 +44,8 @@ class DeliveryViewset(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['GET'])
     def complete(self, request, pk):
-
-        delivery = self.get_object()
-
-        # todo: check QR Code, change status to 'complete'
-        if random.choice([True, False]):
+        if self.is_valid_request():
+            delivery = self.get_object()
             delivery.status = 'complete'
             delivery.save()
             return Response('You have completed the delivery, young padawan!')
