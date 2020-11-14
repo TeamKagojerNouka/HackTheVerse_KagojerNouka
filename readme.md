@@ -34,3 +34,5 @@ Team Members:
 2. Kh. Ashiqur Rahman
 3. Priyeta Saha
 4. Md. Zunaed Karim
+
+Read more about this project **[here](https://drive.google.com/file/d/1BdtuCk-HngjvCdV_R5fWpH2VlrNcLnfE/view?usp=sharing)**
