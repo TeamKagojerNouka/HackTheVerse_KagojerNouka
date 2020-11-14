@@ -15,6 +15,9 @@ router.register('delivery', views.DeliveryViewSet)
 
 
 urlpatterns = [
+    url('suggest/deliveryman/', views.suggest_delivery_men, name='suggest-delivery-men'),
+    url('suggest/service/', views.suggest_delivery_men, name='suggest-service'),
+
     url('', include(router.urls)),
 ]
 
