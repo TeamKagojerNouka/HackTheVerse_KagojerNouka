@@ -70,7 +70,7 @@ def suggest_services(request):
 
     location = request.GET.get('location')
     category = request.GET.get('category')
-    time = float(request.GET.get('time'))
+    time = float(request.GET.get('time', 1000))
 
     services = Service.objects\
         .filter(locations__location_name=location, category=category)\
