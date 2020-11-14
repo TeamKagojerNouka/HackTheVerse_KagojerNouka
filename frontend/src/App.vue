@@ -2,54 +2,44 @@
     <v-app>
         <v-app-bar app color="primary" dark>
             <div class="d-flex align-center">
-                <v-img
-                    alt="Vuetify Logo"
-                    class="shrink mr-2"
-                    contain
-                    src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-                    transition="scale-transition"
-                    width="40"
-                />
-
-                <v-img
-                    alt="Vuetify Name"
-                    class="shrink mt-1 hidden-sm-and-down"
-                    contain
-                    min-width="100"
-                    src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-                    width="100"
-                />
+                <router-link to="/" exact>
+                    <v-avatar size="30" color="white" class="mr-2"></v-avatar>
+                    <span class="white--text">Kagojer Nouka</span>
+                </router-link>
             </div>
 
             <v-spacer></v-spacer>
 
-            <v-btn
-                href="https://github.com/vuetifyjs/vuetify/releases/latest"
-                target="_blank"
-                text
-            >
-                <span class="mr-2">Latest Release</span>
-                <v-icon>mdi-open-in-new</v-icon>
-            </v-btn>
+            <v-tabs icons-and-text right style="width: 60%" optional>
+                <v-tab to="/qrcode" exact>
+                    <span class="tab-text">QR Code</span>
+                    <v-icon>mdi-qrcode</v-icon>
+                </v-tab>
+
+                <v-tab to="/profile" exact>
+                    <span class="tab-text">Profile</span>
+                    <v-icon>mdi-account-circle</v-icon>
+                </v-tab>
+
+                <v-tab to="/dashboard" exact>
+                    <span class="tab-text">Dashboard</span>
+                    <v-icon>mdi-view-dashboard</v-icon>
+                </v-tab>
+            </v-tabs>
         </v-app-bar>
 
         <v-main>
-            <HelloWorld />
+            <router-view></router-view>
         </v-main>
     </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
 import { testWorkingApi } from "@/api/test.api";
 
 export default Vue.extend({
     name: "App",
-
-    components: {
-        HelloWorld,
-    },
 
     data: () => ({
         //
@@ -61,3 +51,17 @@ export default Vue.extend({
     },
 });
 </script>
+
+<style lang="stylus" scoped>
+.tab-text {
+    font-size: 0.7rem;
+}
+
+.theme--dark.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.theme--dark.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+</style>
