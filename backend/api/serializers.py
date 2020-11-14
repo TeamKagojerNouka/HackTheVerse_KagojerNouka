@@ -28,7 +28,7 @@ class ServiceSerializer(DynamicFieldsModelSerializer):
 
     class Meta:
         model = Service
-        fields = ('id', 'service_name', 'active_since', 'service')
+        fields = ('id', 'service_name', 'active_since')
 
 
 class BusinessSerializer(DynamicFieldsModelSerializer):
@@ -41,12 +41,12 @@ class BusinessSerializer(DynamicFieldsModelSerializer):
 class CustomerSerializer(DynamicFieldsModelSerializer):
 
     class Meta:
-        model = Business
+        model = Customer
         fields = ('id', 'full_name', 'phone_num', 'address')
 
 
 class DeliverySerializer(DynamicFieldsModelSerializer):
 
     class Meta:
-        model = Business
+        model = Delivery
         fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer')
