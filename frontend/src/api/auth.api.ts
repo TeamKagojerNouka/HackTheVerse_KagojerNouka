@@ -1,6 +1,6 @@
 import httpClient from "./httpClient";
 
-const END_POINT = "/auth";
+const END_POINT = "/api/auth";
 
 // used to validate tokens received from social login
 const convertToken = (params: object) => httpClient.post(`${END_POINT}/convert-token/`, params);

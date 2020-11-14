@@ -1,5 +1,6 @@
 <template>
-    <v-card>
+    <div v-if="loading"></div>
+    <v-card v-else>
         <v-card-title>{{ businessName }}</v-card-title>
         <v-card-subtitle>{{ category }}</v-card-subtitle>
         <v-divider class="my-2"></v-divider>
@@ -17,19 +18,32 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { getBusinessDetails } from "@/api/business.api";
 
-enum BusinessCategory {
-    clothing = "Clothing",
-    foodAndDrinks = "Food & Drinks",
-    accessories = "Accessories",
-}
-
-@Component
+@Component({
+    name: "profile-card",
+})
 export default class ProfileCard extends Vue {
-    businessName = "Nestle";
-    category = BusinessCategory.foodAndDrinks;
-    activeSince = new Date().toDateString();
-    address = "Kakoli, Dhaka, Bangladesh";
+    businessName: string | undefined;
+    category: string | undefined;
+    activeSince: string | undefined;
+    address: string | undefined;
+    loading = true;
+
+    async loadDetails(): Promise<void> {
+        const response = await getBusinessDetails(1);
+        const business = response.data[0];
+        this.businessName = business["business_name"];
+        this.category = business["category"];
+        const date = new Date(business["active_since"]);
+        this.activeSince = date.toDateString();
+        this.address = business["address"];
+        this.loading = false;
+    }
+
+    created() {
+        this.loadDetails();
+    }
 }
 </script>
 

@@ -6,12 +6,18 @@
     </v-row>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+import DeliveryForm from "@/components/qrcode/DeliveryForm.vue";
+import Component from "vue-class-component";
+
+@Component({
     components: {
-        "delivery-form": () => import("@/components/qrcode/DeliveryForm.vue"),
+        DeliveryForm,
     },
-};
+    name: "qrcode",
+})
+export default class QRcode extends Vue {}
 </script>
 
 <style>

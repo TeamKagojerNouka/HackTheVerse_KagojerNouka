@@ -36,19 +36,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { testWorkingApi } from "@/api/test.api";
 
 export default Vue.extend({
     name: "App",
-
-    data: () => ({
-        //
-    }),
-    created() {
-        testWorkingApi()
-            .then((value) => console.log(value))
-            .catch((error) => console.log(error));
-    },
 });
 </script>
 

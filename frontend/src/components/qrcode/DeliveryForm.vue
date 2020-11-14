@@ -69,8 +69,11 @@
 import Vue from "vue";
 import { VForm } from "@/types";
 import { Component, Ref } from "vue-property-decorator";
+import { generateQRcode } from "@/api/delivery.api";
 
-@Component
+@Component({
+    name: "delivery-form",
+})
 export default class DeliveryForm extends Vue {
     @Ref("form") readonly form!: VForm;
     private date: string | undefined;
@@ -85,9 +88,20 @@ export default class DeliveryForm extends Vue {
         this.date = date;
     }
 
-    private submit() {
+    private async submit() {
         if (this.form.validate()) {
-            // TODO : call generate qr code api
+            const response = await generateQRcode({
+                datetime: this.date + "T12:00:00Z",
+                address: this.address,
+                stage: "Pickup",
+                business: 1,
+                customer: 1,
+                // eslint-disable-next-line @typescript-eslint/camelcase
+                delivery_man: 1,
+            });
+            const qrcodeURL =
+                process.env.VUE_APP_API_URL + response.data["qr_code"];
+            window.open(qrcodeURL);
         }
     }
 }
