@@ -102,7 +102,6 @@ class Delivery(models.Model):
         if not self.qr_code_img:
             self.save_image_in_filesystem()
             self.qr_code_img = self.get_path_to_save_in_image_field()
-            super(Delivery, self).save(*args, **kwargs)
 
     def get_image_url(self):
         return os.path.join(settings.MEDIA_URL, str(self.qr_code_img))
