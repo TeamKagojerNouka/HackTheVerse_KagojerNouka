@@ -1,6 +1,8 @@
+import os
+from uuid import uuid4
 from django.db import models
-
-# Create your models here.
+from django.conf import settings
+import qrcode
 
 
 class DeliveryMan(models.Model):
@@ -56,6 +58,34 @@ class Delivery(models.Model):
     delivery_man = models.ForeignKey(DeliveryMan, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
     business = models.ForeignKey(Business, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
     customer = models.ForeignKey(Customer, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
+
+    qr_code_text = models.CharField(max_length=40, default=uuid4(), editable=False)
+    qr_code_img = models.ImageField(null=True, blank=True)
+
+    def get_path_in_filesystem(self):
+        return os.path.join(settings.MEDIA_ROOT, f'{self.qr_code_text}.png')
+
+    def get_path_to_save_in_image_field(self):
+        return f'{self.qr_code_text}.png'
+
+    def save_image_in_filesystem(self):
+        qr_code = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4
+        )
+        qr_code.add_data(str(self.qr_code_text))
+        if not os.path.exists(settings.MEDIA_ROOT):
+            os.mkdir(settings.MEDIA_ROOT)
+        qr_code.make_image().save(self.get_path_in_filesystem())
+
+    def save(self, *args, **kwargs):
+        if not self.qr_code_img:
+            self.save_image_in_filesystem()
+            self.qr_code_img = self.get_path_to_save_in_image_field()
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.id}:{self.datetime}'
