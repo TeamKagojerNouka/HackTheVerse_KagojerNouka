@@ -19,6 +19,7 @@ class DeliveryMan(models.Model):
     date_of_birth = models.DateField('date of birth', null=True, blank=True)
     phone_num = models.CharField('phone number', max_length=16, unique=True)
     reliability_index = models.DecimalField('reliability of delivery', decimal_places=2, max_digits=10, default=0)
+    is_blacklisted = models.BooleanField('is in blacklist', default=False, blank=True)
 
     def __str__(self):
         return f'{self.id}:{self.full_name}'
@@ -29,6 +30,7 @@ class Service(models.Model):
     service_name = models.CharField('delivery service name', max_length=128, unique=True)
     active_since = models.DateField('start of operation', null=True, blank=True)
     category = models.CharField('category of products delivered', max_length=64, null=True, blank=True)
+    is_blacklisted = models.BooleanField('is in blacklist', default=False, blank=True)
 
     locations = models.ManyToManyField(Location)
 
@@ -64,7 +66,7 @@ class Delivery(models.Model):
     datetime = models.DateTimeField('scheduled datetime', null=True, blank=True)
     address = models.CharField('address', max_length=512, null=True, blank=True)
     stage = models.CharField('stage of delivery', max_length=64, default='ready-for-pickup', blank=True)
-    satisfaction_level = models.SmallIntegerField('satisfact level (out of 10)', null=True, blank=True)
+    satisfaction_level = models.SmallIntegerField('satisfaction level (out of 10)', null=True, blank=True)
     success = models.BooleanField('delivery successful', default=False, blank=True)
     pickup_time = models.IntegerField('time to pickup (minutes)', null=True, blank=False)
 

@@ -1,5 +1,6 @@
 import datetime
 
+import pytz
 from django.db.models import Avg
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, action
@@ -21,6 +22,16 @@ class DeliveryManViewSet(viewsets.ModelViewSet):
     queryset = DeliveryMan.objects.all()
     serializer_class = DeliveryManSerializer
 
+    @action(detail=False, methods=['GET'])
+    def info(self, request):
+
+        nid = request.GET.get('nid')
+
+        delivery_man = DeliveryMan.objects.get(nid=nid)
+        serializer = DeliveryManSerializer(delivery_man)
+
+        return Response(serializer.data)
+
 
 class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
@@ -33,17 +44,21 @@ class DeliveryViewSet(viewsets.ModelViewSet):
 
     def is_valid_request(self):
         delivery = self.get_object()
+        print(delivery.qr_code_text, self.request.POST.get('uuid'), self.request.data.get('uuid'))
         return delivery.qr_code_text == self.request.data.get('uuid')
 
     @action(detail=True, methods=['POST'])
     def pickup(self, request, pk):
 
         try:
+            print(request.POST.get('uuid'), request.data.get('uuid'))
+
             if self.is_valid_request():
                 delivery = self.get_object()
                 delivery.status = 'picked-up'
                 delivery.delivery_man_id = request.data.get('delivery_man_id')
-                delivery.pickup_time = int((datetime.datetime.now() - delivery.datetime).seconds / 60)
+                delivery.pickup_time = int((datetime.datetime.now(tz=pytz.timezone('Asia/Dhaka')) -
+                                            delivery.datetime).seconds / 60)
                 delivery.save()
                 return Response({'success': True, 'message': 'Pickup Successful!'})
             else:
@@ -72,9 +87,8 @@ def suggest_services(request):
     category = request.GET.get('category')
     time = float(request.GET.get('time', 1000))
 
-    services = Service.objects\
-        .filter(locations__location_name=location, category=category)\
-        .annotate(time=Avg('deliveries__pickup_time')).filter(time__lte=time).all()
+    services = Service.objects \
+        .filter(locations__location_name=location, category=category).all()
 
     serializer = ServiceSerializer(services, many=True, fields=['id', 'service_name'])
 
