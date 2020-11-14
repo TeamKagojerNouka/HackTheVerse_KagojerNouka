@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGrey"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp16"
+            android:lineSpacingExtra="6dp"
+            android:fontFamily="@font/ubuntu_mono"
+            android:paddingStart="@dimen/dp16"
+            android:paddingTop="@dimen/dp6"
+            android:paddingEnd="@dimen/dp16"
+            android:paddingBottom="@dimen/dp6"
+            android:text="@string/msg_rate_now"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp18" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:rating="3.5"
+            android:layout_marginTop="@dimen/dp16"
+            android:numStars="5"
+            android:saveEnabled="true" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp16"
+            android:fontFamily="@font/ubuntu_mono"
+            android:paddingStart="@dimen/dp32"
+            android:paddingTop="@dimen/dp16"
+            android:paddingEnd="@dimen/dp32"
+            android:paddingBottom="@dimen/dp16"
+            android:text="@string/label_rate"
+            android:textColor="@color/brightWhite"
+            android:textSize="@dimen/sp15"
+            app:cornerRadius="@dimen/dp24" />
+    </LinearLayout>
+</layout>

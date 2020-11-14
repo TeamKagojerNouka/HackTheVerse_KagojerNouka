@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/brightWhite"
+        tools:context=".ui.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorPrimary">
+
+            <!--<com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_take_ss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/colorPrimary"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:backgroundTintMode="src_atop"
+                android:text="Share"
+                />-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_user_photo"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="@dimen/dp64"
+                android:contentDescription="ProfileImage"
+                android:src="@drawable/ic_person"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:civ_border_width="0dp"
+                tools:src="@drawable/ic_person" />
+
+
+
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp16"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/ubuntu_mono"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/img_user_photo"
+                tools:text="Ashiqur Rahman" />
+
+            <TextView
+                android:id="@+id/tv_user_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:textAlignment="center"
+                android:textSize="@dimen/sp14"
+                android:fontFamily="@font/ubuntu_mono"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_name"
+                tools:text="Customer" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <TextView
+                android:id="@+id/tv_label_user_id"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp16"
+                android:background="@drawable/textview_right_border"
+                android:fontFamily="@font/ubuntu_mono"
+                android:text="@string/label_user_id"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tv_user_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_user_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+
+                android:fontFamily="@font/ubuntu_mono"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_user_id"
+                app:layout_constraintStart_toEndOf="@id/tv_label_user_id"
+                app:layout_constraintTop_toTopOf="@+id/tv_label_user_id"
+                tools:text="32031" />
+
+            <TextView
+                android:id="@+id/tv_label_phone"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/textview_right_border"
+                android:fontFamily="@font/ubuntu_mono"
+                android:text="@string/label_phone_no"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_user_id" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:fontFamily="@font/ubuntu_mono"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_phone"
+                app:layout_constraintStart_toEndOf="@id/tv_label_phone"
+                app:layout_constraintTop_toTopOf="@id/tv_label_phone"
+                tools:text="01687226064" />
+
+            <TextView
+                android:id="@+id/tv_label_address"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp32"
+                android:background="@drawable/textview_right_border"
+                android:fontFamily="@font/ubuntu_mono"
+                android:text="@string/label_address"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_phone" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+                android:fontFamily="@font/ubuntu_mono"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_address"
+                app:layout_constraintStart_toEndOf="@id/tv_label_address"
+                app:layout_constraintTop_toTopOf="@id/tv_label_address"
+                tools:text="48/2, Uttor Road, Motijheel, Dhaka, Bangladesh" />
+
+
+            <TextView
+                android:id="@+id/tv_label_extra1"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp32"
+                android:background="@drawable/textview_right_border"
+                android:fontFamily="@font/ubuntu_mono"
+                tools:text="extra1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_address" />
+
+            <TextView
+                android:id="@+id/tv_extra1"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+                android:fontFamily="@font/ubuntu_mono"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_extra1"
+                app:layout_constraintStart_toEndOf="@id/tv_label_extra1"
+                app:layout_constraintTop_toTopOf="@id/tv_label_extra1"
+                tools:text="extra1 value" />
+
+            <TextView
+                android:id="@+id/tv_label_extra2"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp32"
+                android:background="@drawable/textview_right_border"
+                android:fontFamily="@font/ubuntu_mono"
+                tools:text="extra2"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_extra1" />
+
+            <TextView
+                android:id="@+id/tv_extra2"
+                android:layout_width="@dimen/dp120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+                android:fontFamily="@font/ubuntu_mono"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_extra2"
+                app:layout_constraintStart_toEndOf="@id/tv_label_extra2"
+                app:layout_constraintTop_toTopOf="@id/tv_label_extra2"
+                tools:text="extra2 value" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/ubuntu_mono"
+            app:cornerRadius="@dimen/dp24"
+            android:textColor="@color/brightWhite"
+            android:paddingTop="@dimen/dp16"
+            android:paddingBottom="@dimen/dp16"
+            android:paddingStart="@dimen/dp32"
+            android:paddingEnd="@dimen/dp32"
+            app:layout_constraintTop_toBottomOf="@id/layout_details"
+            tools:text="@string/label_complete_delivery" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

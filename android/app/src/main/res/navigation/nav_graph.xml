@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.kagojernouka.views.fragments.ProfileFragment"
+        android:label="@string/fragment_label_home"
+        tools:layout="@layout/layout_fragment_profile">
+
+        <action
+            android:id="@+id/action_profile_fragment_to_scan_fragment"
+            app:destination="@id/scanFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.kagojernouka.views.fragments.HomeFragment"
+        android:label="@string/fragment_label_home"
+        tools:layout="@layout/layout_fragment_home">
+
+        <action
+            android:id="@+id/action_home_fragment_to_profile"
+            app:destination="@id/profileFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.kagojernouka.views.fragments.ScanFragment"
+        android:label="@string/fragment_label_home"
+        tools:layout="@layout/layout_fragment_scan">
+
+        <argument
+            android:name="userType"
+            app:argType="string"
+            app:nullable="false"
+            />
+    </fragment>
+</navigation>
