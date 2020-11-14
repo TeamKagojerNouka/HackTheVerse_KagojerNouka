@@ -19,14 +19,14 @@ class DeliveryManSerializer(DynamicFieldsModelSerializer):
 
     class Meta:
         model = DeliveryMan
-        fields = ('id', 'full_name', 'nid', 'date_of_birth', 'phone_num', 'reliability_index')
+        fields = ('id', 'full_name', 'nid', 'date_of_birth', 'phone_num', 'reliability_index', 'is_blacklisted')
 
 
 class ServiceSerializer(DynamicFieldsModelSerializer):
 
     class Meta:
         model = Service
-        fields = ('id', 'service_name', 'active_since', 'category', 'locations')
+        fields = ('id', 'service_name', 'active_since', 'category', 'locations', 'is_blacklisted')
 
 
 class BusinessSerializer(DynamicFieldsModelSerializer):
@@ -48,7 +48,8 @@ class DeliverySerializer(DynamicFieldsModelSerializer):
 
     class Meta:
         model = Delivery
-        fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer', 'qr_code')
+        fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer',
+                  'qr_code')
 
     def get_qr_code(self, obj):
         return obj.get_image_url()

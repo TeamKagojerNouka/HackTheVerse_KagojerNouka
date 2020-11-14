@@ -21,6 +21,16 @@ class DeliveryManViewSet(viewsets.ModelViewSet):
     queryset = DeliveryMan.objects.all()
     serializer_class = DeliveryManSerializer
 
+    @action(detail=False, methods=['GET'])
+    def info(self, request):
+
+        nid = request.GET.get('nid')
+
+        delivery_man = DeliveryMan.objects.get(nid=nid)
+        serializer = DeliveryManSerializer(delivery_man)
+
+        return Response(serializer.data)
+
 
 class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
