@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from django.urls import include
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework.routers import DefaultRouter
 
 from . import views
@@ -14,6 +16,21 @@ router.register('delivery', views.DeliveryViewSet)
 
 urlpatterns = [
     url('', include(router.urls)),
+]
 
-    url('test/', views.test_endpoint, name='testing')
+# Schema
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Kagojer Nouka API",
+        default_version='v1',
+        description="Kagojer Nouka API",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="tahmeedtarek@gmail.com"),
+    ),
+    public=True
+)
+
+urlpatterns += [
+    url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]

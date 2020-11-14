@@ -51,8 +51,3 @@ class DeliveryViewSet(viewsets.ModelViewSet):
             return Response('You have completed the delivery, young padawan!')
         else:
             return Response('You have FAILED, young padawan!')
-
-
-@api_view(['GET'])
-def test_endpoint(request):
-    return Response('Welcome, young padawan!')
