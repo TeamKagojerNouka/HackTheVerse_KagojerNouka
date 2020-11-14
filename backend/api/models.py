@@ -91,5 +91,8 @@ class Delivery(models.Model):
             self.qr_code_img = self.get_path_to_save_in_image_field()
             super(Delivery, self).save(*args, **kwargs)
 
+    def get_image_url(self):
+        return os.path.join(settings.MEDIA_URL, str(self.qr_code_img))
+
     def __str__(self):
         return f'{self.id}:{self.datetime}'

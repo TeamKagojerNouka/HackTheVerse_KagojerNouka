@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from .models import *
 
 
@@ -46,7 +45,11 @@ class CustomerSerializer(DynamicFieldsModelSerializer):
 
 
 class DeliverySerializer(DynamicFieldsModelSerializer):
+    qr_code = serializers.SerializerMethodField()
 
     class Meta:
         model = Delivery
-        fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer')
+        fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer', 'qr_code')
+
+    def get_qr_code(self, obj):
+        return obj.get_image_url()
