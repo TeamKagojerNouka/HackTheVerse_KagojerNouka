@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from .models import *
 
 
@@ -7,7 +6,6 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         fields = kwargs.pop('fields', None)
-
         super(DynamicFieldsModelSerializer, self).__init__(*args, **kwargs)
 
         if fields is not None:
@@ -46,11 +44,14 @@ class CustomerSerializer(DynamicFieldsModelSerializer):
 
 
 class DeliverySerializer(DynamicFieldsModelSerializer):
+    qr_code = serializers.SerializerMethodField()
 
     class Meta:
         model = Delivery
-        fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer', 'service',
-                  'satisfaction_level', 'success', 'pickup_time')
+        fields = ('id', 'datetime', 'address', 'stage', 'delivery_man', 'business', 'customer', 'qr_code')
+
+    def get_qr_code(self, obj):
+        return obj.get_image_url()
 
 
 class LocationSerializer(DynamicFieldsModelSerializer):
@@ -58,3 +59,4 @@ class LocationSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = Location
         fields = ('id', 'location_name', 'region')
+
