@@ -16,13 +16,13 @@
                     <v-icon>mdi-qrcode</v-icon>
                 </v-tab>
 
-                <v-tab to="/profile" exact>
+                <v-tab to="/business-profile" exact>
                     <span class="tab-text">Profile</span>
                     <v-icon>mdi-account-circle</v-icon>
                 </v-tab>
 
-                <v-tab to="/dashboard" exact>
-                    <span class="tab-text">Dashboard</span>
+                <v-tab to="/delivery-services" exact>
+                    <span class="tab-text">services</span>
                     <v-icon>mdi-view-dashboard</v-icon>
                 </v-tab>
             </v-tabs>

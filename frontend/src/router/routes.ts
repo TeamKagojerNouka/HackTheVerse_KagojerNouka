@@ -12,19 +12,14 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "qrcode" */ "@/views/QRcode.vue")
     },
     {
-        path: "/dashboard",
-        name: "dashboard",
-        component: () => import(/* webpackChunkName: "qrcode" */ "@/views/Dashboard.vue")
-    },
-    {
-        path: "/profile",
+        path: "/business-profile",
         name: "profile",
-        component: () => import(/* webpackChunkName: "qrcode" */ "@/views/Profile.vue")
+        component: () => import(/* webpackChunkName: "profile" */ "@/views/Profile.vue")
     },
     {
-        path: "/delivery-service",
-        name: "delivery",
-        component: () => import(/* webpackChunkName: "qrcode" */ "@/views/QRcode.vue")
+        path: "/delivery-services",
+        name: "services",
+        component: () => import(/* webpackChunkName: "services" */ "@/views/Services.vue")
     },
 ]
 
