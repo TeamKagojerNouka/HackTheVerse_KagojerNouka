@@ -6,6 +6,12 @@ from django.conf import settings
 import qrcode
 
 
+class Location(models.Model):
+
+    location_name = models.CharField('location name', max_length=128)
+    region = models.CharField('location under region', max_length=128)
+
+
 class DeliveryMan(models.Model):
 
     full_name = models.CharField('delivery man name', max_length=128)
@@ -22,6 +28,9 @@ class Service(models.Model):
 
     service_name = models.CharField('delivery service name', max_length=128, unique=True)
     active_since = models.DateField('start of operation', null=True, blank=True)
+    category = models.CharField('category of products delivered', max_length=64, null=True, blank=True)
+
+    locations = models.ManyToManyField(Location)
 
     def __str__(self):
         return f'{self.id}:{self.service_name}'
@@ -55,9 +64,13 @@ class Delivery(models.Model):
     datetime = models.DateTimeField('scheduled datetime', null=True, blank=True)
     address = models.CharField('address', max_length=512, null=True, blank=True)
     stage = models.CharField('stage of delivery', max_length=64, default='ready-for-pickup', blank=True)
+    satisfaction_level = models.SmallIntegerField('satisfact level (out of 10)', null=True, blank=True)
+    success = models.BooleanField('delivery successful', default=False, blank=True)
+    pickup_time = models.IntegerField('time to pickup (minutes)', null=True, blank=False)
 
     delivery_man = models.ForeignKey(DeliveryMan, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
     business = models.ForeignKey(Business, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
+    service = models.ForeignKey(Service, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
     customer = models.ForeignKey(Customer, related_name='deliveries', on_delete=models.SET_NULL, null=True, blank=True)
 
     qr_code_text = models.CharField(max_length=40, default=uuid4(), editable=False)
