@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.KagojerNouka" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="TransparentDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!--custom toasts-->
+    <style name="successToast" parent="customToast">
+        <item name="stIconStart">@drawable/tick_svg</item>
+    </style>
+    <style name="errorToast" parent="customToast">
+        <item name="stIconStart">@drawable/close_svg</item>
+    </style>
+    <style name="infoToast" parent="customToast">
+        <item name="stIconStart">@drawable/ic_info</item>
+    </style>
+
+    <style name="customToast">
+        <item name="stTextBold">false</item>
+        <item name="stTextColor">@color/black</item>
+        <item name="stFont">@font/ubuntu_mono</item>
+        <item name="stTextSize">18sp</item>
+        <item name="stColorBackground">@color/brightWhite</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">0.5dp</item>
+        <item name="stStrokeColor">@color/white</item>
+        <item name="stGravity">center</item>
+        <item name="stRadius">20dp</item>
+    </style>
+
+</resources>
