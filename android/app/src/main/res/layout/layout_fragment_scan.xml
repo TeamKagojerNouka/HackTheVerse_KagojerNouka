@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/brightWhite"
+        >
+
+        <TextView
+            android:id="@+id/tv_action_name"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="@dimen/dp16"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/dp120"
+            android:lineSpacingExtra="6dp"
+            android:fontFamily="@font/ubuntu_mono"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="@string/msg_complete_delivery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/ubuntu_mono"
+            android:drawableTop="@drawable/ic_scan"
+            app:cornerRadius="@dimen/dp24"
+            android:textColor="@color/brightWhite"
+            android:paddingTop="@dimen/dp16"
+            android:paddingBottom="@dimen/dp16"
+            android:paddingStart="@dimen/dp32"
+            android:paddingEnd="@dimen/dp32"
+            tools:text="@string/scan_qr_code"
+            app:layout_constraintTop_toBottomOf="@id/tv_action_name"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

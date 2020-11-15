@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">KagojerNouka</string>
+    <string name="fragment_label_home">Home</string>
+    <string name="label_i_am_a_delivery_man">I am a Delivery Man</string>
+    <string name="label_i_am_a_customer">I am a Customer</string>
+    <string name="label_user_id">User ID</string>
+    <string name="label_phone_no">Phone No.</string>
+    <string name="label_address">Address</string>
+    <string name="label_complete_delivery">Complete Delivery</string>
+    <string name="msg_complete_delivery">Please confirm you have received your order by scanning the QR code ✅ This helps us make your experience better 😊</string>
+    <string name="label_nid">NID</string>
+    <string name="label_dob">DOB</string>
+    <string name="label_reliability_idx">Reliability Index</string>
+    <string name="label_confirm_pickup">Confirm Pickup</string>
+    <string name="msg_confirm_pickup">Please confirm you have picked up the items by scanning the QR code ✅ This helps us make your experience better 😊</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="label_rate">Rate</string>
+    <string name="msg_rate_now">Please rate the service provided by your delivery man. Your feedback helps us make your future experiences better 💖</string>
+</resources>
