@@ -1,6 +1,8 @@
 Kagojer Nouka's project for HackTheVerse
 ========================================
 
+This project contains Team Kagojer Nouka's code for HackTheVerse. To get a better understanding of what we did, you can view [this short video](https://drive.google.com/file/d/1EV2TCK2Ui41bQqcJb3l_J8fAYBQYJ_8e/view). If you are more of a reader than a video-guy, read more about this project **[here](https://drive.google.com/file/d/1BdtuCk-HngjvCdV_R5fWpH2VlrNcLnfE/view?usp=sharing)**
+
 ## Project Structure
 - **`backend`** contains the django backend
   - `api` source code for django-rest-framework application. Contains the db models, serializers, views and url endpoints.
@@ -35,4 +37,3 @@ Team Members:
 3. Priyeta Saha
 4. Md. Zunaed Karim
 
-Read more about this project **[here](https://drive.google.com/file/d/1BdtuCk-HngjvCdV_R5fWpH2VlrNcLnfE/view?usp=sharing)**
